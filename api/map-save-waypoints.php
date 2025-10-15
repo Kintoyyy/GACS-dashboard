@@ -60,7 +60,7 @@ try {
             'waypoints_count' => count($waypoints)
         ]);
     } else {
-        jsonResponse(['success' => false, 'message' => 'Gagal menyimpan waypoints'], 500);
+        jsonResponse(['success' => false, 'message' => 'Failed to save waypoints'], 500);
     }
 
 } catch (Exception $e) {

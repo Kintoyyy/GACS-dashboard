@@ -91,6 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="footer" style="position: fixed; bottom: 0; width: 100%; background: transparent; color: white;">
         Made by <a href="https://github.com/safrinnetwork/" target="_blank" style="color: white;">Mostech</a>
+        <br>
+        Modified by <a href="https://github.com/Kintoyyy/" target="_blank" style="color: white;">Kintoyyy</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

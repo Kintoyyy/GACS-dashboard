@@ -13,7 +13,7 @@ include __DIR__ . '/views/layouts/header.php';
 <?php if (!$genieacsConfigured): ?>
     <div class="alert alert-warning">
         <i class="bi bi-exclamation-triangle"></i>
-        GenieACS belum dikonfigurasi. Silakan konfigurasi terlebih dahulu di
+        GenieACS is not yet configured. Silakan konfigurasi terlebih dahulu di
         <a href="/configuration.php">halaman Configuration</a>.
     </div>
 <?php else: ?>
@@ -352,7 +352,7 @@ async function confirmSummon() {
     if (result && result.success) {
         showToast('Device summon berhasil!', 'success');
     } else {
-        showToast(result.message || 'Gagal summon device', 'danger');
+        showToast(result.message || 'Failed to summon device', 'danger');
     }
 
     currentSummonDeviceId = null;

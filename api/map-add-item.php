@@ -29,7 +29,7 @@ $longitude = $data['longitude'] ?? 0;
 $genieacsDeviceId = $data['genieacs_device_id'] ?? null;
 
 if (empty($itemType) || empty($name)) {
-    jsonResponse(['success' => false, 'message' => 'Item type dan name harus diisi']);
+    jsonResponse(['success' => false, 'message' => 'Item type and name must be filled']);
 }
 
 // Validate ONU: check if genieacs_device_id is unique
@@ -39,7 +39,7 @@ if ($itemType === 'onu' && !empty($genieacsDeviceId)) {
     $stmt->bind_param("s", $genieacsDeviceId);
     $stmt->execute();
     if ($stmt->get_result()->num_rows > 0) {
-        jsonResponse(['success' => false, 'message' => 'GenieACS device sudah digunakan oleh ONU lain']);
+        jsonResponse(['success' => false, 'message' => 'GenieACS device is already used by another ONU']);
     }
 }
 
@@ -67,7 +67,7 @@ $propertiesJson = json_encode($properties);
 $stmt->bind_param("sisddss", $itemType, $parentId, $name, $latitude, $longitude, $genieacsDeviceId, $propertiesJson);
 
 if (!$stmt->execute()) {
-    jsonResponse(['success' => false, 'message' => 'Gagal menambahkan item: ' . $conn->error]);
+    jsonResponse(['success' => false, 'message' => 'Failed to add item: ' . $conn->error]);
 }
 
 $itemId = $conn->insert_id;
@@ -212,7 +212,7 @@ try {
                         $row = $result->fetch_assoc();
                         if ($row['count'] > 0) {
                             $conn->query("DELETE FROM map_items WHERE id = $itemId");
-                            jsonResponse(['success' => false, 'message' => "ODC Port $odcPort sudah digunakan oleh ODP lain"]);
+                            jsonResponse(['success' => false, 'message' => "ODC Port $odcPort is already in use by another ODP"]);
                         }
                     }
 
@@ -238,7 +238,7 @@ try {
                         $row = $result->fetch_assoc();
                         if ($row['count'] > 0) {
                             $conn->query("DELETE FROM map_items WHERE id = $itemId");
-                            jsonResponse(['success' => false, 'message' => "Parent ODP port $parentOdpPort sudah digunakan oleh ODP lain"]);
+                            jsonResponse(['success' => false, 'message' => "Parent ODP port $parentOdpPort is already in use by another ODP"]);
                         }
                     }
 
@@ -279,7 +279,7 @@ try {
 
             if (empty($odpPort)) {
                 $conn->query("DELETE FROM map_items WHERE id = $itemId");
-                jsonResponse(['success' => false, 'message' => 'ODP Port harus dipilih']);
+                jsonResponse(['success' => false, 'message' => 'ODP Port must be selected']);
             }
 
             // Check if port is already occupied
@@ -288,7 +288,7 @@ try {
             $stmt->execute();
             if ($stmt->get_result()->num_rows > 0) {
                 $conn->query("DELETE FROM map_items WHERE id = $itemId");
-                jsonResponse(['success' => false, 'message' => 'Port ODP sudah terpakai']);
+                jsonResponse(['success' => false, 'message' => 'ODP Port is already in use']);
             }
 
             $stmt = $conn->prepare("INSERT INTO onu_config (map_item_id, odp_port, customer_name, genieacs_device_id) VALUES (?, ?, ?, ?)");
@@ -334,7 +334,7 @@ try {
             break;
     }
 
-    jsonResponse(['success' => true, 'message' => 'Item berhasil ditambahkan', 'item_id' => $itemId]);
+    jsonResponse(['success' => true, 'message' => 'Item successfully added', 'item_id' => $itemId]);
 
 } catch (Exception $e) {
     // Rollback on error

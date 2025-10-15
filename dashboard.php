@@ -14,8 +14,8 @@ include __DIR__ . '/views/layouts/header.php';
 <?php if (!$genieacsConfigured): ?>
     <div class="alert alert-warning">
         <i class="bi bi-exclamation-triangle"></i>
-        GenieACS belum dikonfigurasi. Silakan konfigurasi terlebih dahulu di
-        <a href="/configuration.php">halaman Configuration</a>.
+        GenieACS is not yet configured. Please configure first at
+        <a href="/configuration.php">Configuration page</a>.
     </div>
 <?php else: ?>
     <!-- Stats Cards -->
@@ -135,7 +135,7 @@ async function loadDashboardData() {
             // Update chart
             updateChart(stats);
         } else {
-            showToast('Gagal memuat data dashboard', 'danger');
+            showToast('Failed to load dashboard data', 'danger');
         }
     } catch (error) {
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -191,7 +191,7 @@ async function loadUplinkData() {
         if (result && result.success) {
             updateUplinkChart(result.data);
         } else {
-            showToast('Gagal memuat data uplink', 'danger');
+            showToast('Failed to load uplink data', 'danger');
         }
     } catch (error) {
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

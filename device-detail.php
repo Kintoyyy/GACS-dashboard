@@ -21,8 +21,8 @@ include __DIR__ . '/views/layouts/header.php';
 <?php if (!$genieacsConfigured): ?>
     <div class="alert alert-warning">
         <i class="bi bi-exclamation-triangle"></i>
-        GenieACS belum dikonfigurasi. Silakan konfigurasi terlebih dahulu di
-        <a href="/configuration.php">halaman Configuration</a>.
+        GenieACS is not yet configured. Please configure first at
+        <a href="/configuration.php">Configuration page</a>.
     </div>
 <?php else: ?>
     <!-- Back Button -->
@@ -58,22 +58,22 @@ include __DIR__ . '/views/layouts/header.php';
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i class="bi bi-lightning-charge"></i> Konfirmasi Summon Device
+                    <i class="bi bi-lightning-charge"></i> Confirm Device Summon
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center py-4">
                 <i class="bi bi-exclamation-triangle" style="font-size: 3rem; color: var(--warning-color);"></i>
                 <h5 class="mt-3">Summon Device?</h5>
-                <p class="text-muted mb-0">Apakah Anda yakin ingin melakukan connection request ke device ini?</p>
+                <p class="text-muted mb-0">Are you sure you want to send a connection request to this device?</p>
                 <p class="text-muted mb-0"><small>Device ID: <strong id="summon-device-id"></strong></small></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-lg"></i> Batal
+                    <i class="bi bi-x-lg"></i> Cancel
                 </button>
                 <button type="button" class="btn btn-primary" onclick="confirmSummon()">
-                    <i class="bi bi-lightning-charge"></i> Ya, Summon
+                    <i class="bi bi-lightning-charge"></i> Yes, Summon
                 </button>
             </div>
         </div>
@@ -93,7 +93,7 @@ include __DIR__ . '/views/layouts/header.php';
             <div class="modal-body">
                 <div class="alert alert-info">
                     <i class="bi bi-info-circle"></i>
-                    <strong>Info:</strong> Perubahan akan dikirim ke ONU melalui GenieACS. Device mungkin perlu reboot untuk menerapkan konfigurasi baru.
+                    <strong>Info:</strong> Changes will be sent to ONU via GenieACS. The device may need to reboot to apply the new configuration.
                 </div>
                 <form id="editWiFiForm">
                     <input type="hidden" id="edit-device-id" name="device_id">
@@ -105,7 +105,7 @@ include __DIR__ . '/views/layouts/header.php';
                         <input type="text" class="form-control" id="edit-wifi-ssid" name="wifi_ssid"
                                required minlength="1" maxlength="32"
                                placeholder="Enter WiFi SSID (1-32 characters)">
-                        <div class="form-text">SSID harus antara 1-32 karakter</div>
+                        <div class="form-text">SSID must be between 1-32 characters</div>
                     </div>
 
                     <div class="mb-3">
@@ -118,7 +118,7 @@ include __DIR__ . '/views/layouts/header.php';
                             <option value="WPA2PSKWPAPSK">WPA/WPA2-PSK Mixed</option>
                             <option value="None">Open (No Security)</option>
                         </select>
-                        <div class="form-text">Pilih mode keamanan WiFi</div>
+                        <div class="form-text">Select WiFi security mode</div>
                     </div>
 
                     <div class="mb-3" id="password-field-group">
@@ -133,7 +133,7 @@ include __DIR__ . '/views/layouts/header.php';
                                 <i id="edit-toggle-icon" class="bi bi-eye"></i>
                             </button>
                         </div>
-                        <div class="form-text">Password harus antara 8-63 karakter untuk WPA/WPA2</div>
+                        <div class="form-text">Password must be between 8-63 characters for WPA/WPA2</div>
                     </div>
 
                     <div class="mb-3">
@@ -146,13 +146,13 @@ include __DIR__ . '/views/layouts/header.php';
                             <option value="3">WLAN 3</option>
                             <option value="4">WLAN 4</option>
                         </select>
-                        <div class="form-text">Pilih interface WLAN yang ingin diubah</div>
+                        <div class="form-text">Select the WLAN interface you want to change</div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-lg"></i> Batal
+                    <i class="bi bi-x-lg"></i> Cancel
                 </button>
                 <button type="button" class="btn btn-primary" onclick="confirmUpdateWiFi()">
                     <i class="bi bi-check-lg"></i> Update WiFi
@@ -639,7 +639,7 @@ async function confirmSummon() {
         // Reload device detail after summon
         setTimeout(loadDeviceDetail, 2000);
     } else {
-        showToast(result.message || 'Gagal summon device', 'danger');
+        showToast(result.message || 'Failed to summon device', 'danger');
     }
 }
 

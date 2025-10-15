@@ -54,7 +54,7 @@ async function fetchAPI(url, options = {}) {
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
                 console.error('Non-JSON response:', text.substring(0, 200));
             }
-            showToast('Server mengembalikan response yang tidak valid.', 'danger');
+            showToast('The server returned an invalid response.', 'danger');
             return null;
         }
     } catch (error) {
@@ -62,7 +62,7 @@ async function fetchAPI(url, options = {}) {
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             console.error('API Error:', error);
         }
-        showToast('Terjadi kesalahan koneksi: ' + error.message, 'danger');
+        showToast('Connection error occurred: ' + error.message, 'danger');
         return null;
     }
 }
@@ -120,9 +120,9 @@ function autoRefresh(callback, interval = 30000) {
 // Copy to clipboard
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
-        showToast('Berhasil disalin!', 'success');
+        showToast('Successfully copied!', 'success');
     }).catch(() => {
-        showToast('Gagal menyalin', 'danger');
+        showToast('Failed to copy', 'danger');
     });
 }
 
@@ -133,11 +133,11 @@ function formatUptime(seconds) {
     const minutes = Math.floor((seconds % 3600) / 60);
 
     let result = '';
-    if (days > 0) result += days + ' hari ';
-    if (hours > 0) result += hours + ' jam ';
-    if (minutes > 0) result += minutes + ' menit';
+    if (days > 0) result += days + ' days ';
+    if (hours > 0) result += hours + ' hours ';
+    if (minutes > 0) result += minutes + ' minutes';
 
-    return result || '0 menit';
+    return result || '0 minutes';
 }
 
 // Add animation styles

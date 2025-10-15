@@ -13,8 +13,8 @@ include __DIR__ . '/views/layouts/header.php';
 <?php if (!$genieacsConfigured): ?>
     <div class="alert alert-warning">
         <i class="bi bi-exclamation-triangle"></i>
-        GenieACS belum dikonfigurasi. Silakan konfigurasi terlebih dahulu di
-        <a href="/configuration.php">halaman Configuration</a>.
+        GenieACS is not yet configured. Please configure first at
+        <a href="/configuration.php">Configuration page</a>.
     </div>
 <?php else: ?>
     <div class="row mb-3">
@@ -67,16 +67,16 @@ include __DIR__ . '/views/layouts/header.php';
     <!-- Context Menu untuk Polylines -->
     <div id="polyline-context-menu" class="context-menu" style="display: none; position: absolute; z-index: 9999; background: white; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); min-width: 150px;">
         <div class="context-menu-item" onclick="enablePolylineEdit()">
-            <i class="bi bi-pencil"></i> Edit Jalur
+            <i class="bi bi-pencil"></i> Edit Path
         </div>
         <div class="context-menu-item" onclick="savePolylineWaypoints()">
-            <i class="bi bi-save"></i> Simpan Waypoints
+            <i class="bi bi-save"></i> Save Waypoints
         </div>
         <div class="context-menu-item" onclick="resetPolylineToStraight()">
-            <i class="bi bi-arrow-counterclockwise"></i> Reset ke Garis Lurus
+            <i class="bi bi-arrow-counterclockwise"></i> Reset to Straight Line
         </div>
         <div class="context-menu-item" onclick="closeContextMenu()">
-            <i class="bi bi-x-lg"></i> Tutup
+            <i class="bi bi-x-lg"></i> Close
         </div>
     </div>
 <?php endif; ?>
@@ -111,21 +111,21 @@ include __DIR__ . '/views/layouts/header.php';
                     <div class="form-group">
                         <label>Latitude</label>
                         <input type="number" step="0.00000001" name="latitude" class="form-control" required readonly>
-                        <small class="text-muted">Koordinat otomatis terisi dari pointer di peta</small>
+                        <small class="text-muted">Coordinates are automatically filled from the pointer on the map</small>
                     </div>
                     <div class="form-group">
                         <label>Longitude</label>
                         <input type="number" step="0.00000001" name="longitude" class="form-control" required readonly>
-                        <small class="text-muted">Drag pointer di peta untuk mengubah lokasi</small>
+                        <small class="text-muted">Drag the pointer on the map to change the location</small>
                     </div>
                     <div class="alert alert-info">
                         <i class="bi bi-info-circle"></i>
-                        <strong>Cara memilih lokasi:</strong>
+                        <strong>How to select a location:</strong>
                         <ul class="mb-0 mt-2">
-                            <li><strong>Klik di peta</strong> untuk menampilkan pointer lokasi</li>
-                            <li>Klik lagi di peta untuk memindahkan pointer ke lokasi lain</li>
-                            <li>Atau drag marker pointer biru ke lokasi yang diinginkan</li>
-                            <li>Koordinat otomatis terisi dari posisi pointer</li>
+                            <li><strong>Click on the map</strong> to display the location pointer</li>
+                            <li>Click again on the map to move the pointer to a different location</li>
+                            <li>Or drag the blue pointer marker to the desired location</li>
+                            <li>Coordinates are automatically filled from the pointer position</li>
                         </ul>
                     </div>
                     <div id="dynamic-fields"></div>
@@ -193,25 +193,25 @@ include __DIR__ . '/views/layouts/header.php';
                 <form id="form-server-links">
                     <input type="hidden" name="item_id">
                     <div class="form-group">
-                        <label>🌐 ISP Link (dari MikroTik Netwatch)</label>
+                        <label>🌐 ISP Link (from MikroTik Netwatch)</label>
                         <select name="isp_link" class="form-control" id="isp-link-select">
                             <option value="">No Link</option>
                         </select>
-                        <small class="text-muted">Link ke ISP/Provider</small>
+                        <small class="text-muted">Link to ISP/Provider</small>
                     </div>
                     <div class="form-group">
-                        <label>🔧 MikroTik Device (dari GenieACS)</label>
+                        <label>🔧 MikroTik Device (from GenieACS)</label>
                         <select name="mikrotik_device_id" class="form-control" id="mikrotik-device-select">
                             <option value="">No Device</option>
                         </select>
-                        <small class="text-muted">Device MikroTik Router dari GenieACS</small>
+                        <small class="text-muted">Device MikroTik Router from GenieACS</small>
                     </div>
                     <div class="form-group">
-                        <label>📡 OLT Link (dari MikroTik Netwatch)</label>
+                        <label>📡 OLT Link (from MikroTik Netwatch)</label>
                         <select name="olt_link" class="form-control" id="olt-link-select">
                             <option value="">No Link</option>
                         </select>
-                        <small class="text-muted">Link ke OLT</small>
+                        <small class="text-muted">Link to OLT</small>
                     </div>
                     <div id="pon-output-power-container">
                         <!-- PON output power fields will be dynamically generated here -->
@@ -228,7 +228,7 @@ include __DIR__ . '/views/layouts/header.php';
 
 <style>
 #map {
-    height: 600px;
+    height: 1000px;
     width: 100%;
 }
 
@@ -703,7 +703,7 @@ let waypoints = {}; // Store waypoints per connection
 
 function initMap() {
     // Default center (Indonesia)
-    map = L.map('map').setView([-6.2088, 106.8456], 13);
+    map = L.map('map').setView([10.34316816053543, 123.94078076894922], 13);
 
     // Initialize Leaflet.Editable with retry mechanism
     let editableRetries = 0;
@@ -1731,8 +1731,8 @@ function setLocationPointer(latlng) {
     // Show popup with instructions
     locationPointer.bindPopup(`
         <div style="text-align: center;">
-            <strong>📍 Pilih Lokasi</strong><br>
-            <small>Klik peta atau drag marker ini<br>untuk memilih lokasi item</small>
+            <strong>📍 Select Location</strong><br>
+            <small>Click on the map or drag this marker<br>to select the item location</small>
         </div>
     `).openPopup();
 }
@@ -1794,30 +1794,30 @@ async function updateItemForm(type) {
 
             dynamicFields.innerHTML = `
                 <div class="form-group">
-                    <label>🌐 ISP Link (dari MikroTik Netwatch)</label>
+                    <label>🌐 ISP Link (from MikroTik Netwatch)</label>
                     <select name="isp_link" class="form-control">
                         ${netwatchOptionsServer}
                     </select>
-                    <small class="text-muted">Link ke ISP/Provider (opsional)</small>
+                    <small class="text-muted">Link to ISP/Provider (optional)</small>
                 </div>
                 <div class="form-group">
-                    <label>🔧 MikroTik Device (dari GenieACS)</label>
+                    <label>🔧 MikroTik Device (from GenieACS)</label>
                     <select name="mikrotik_device_id" class="form-control">
                         ${genieacsOptionsServer}
                     </select>
-                    <small class="text-muted">Device MikroTik Router dari GenieACS (opsional)</small>
+                    <small class="text-muted">MikroTik Router device from GenieACS (optional)</small>
                 </div>
                 <div class="form-group">
-                    <label>📡 OLT Link (dari MikroTik Netwatch)</label>
+                    <label>📡 OLT Link (from MikroTik Netwatch)</label>
                     <select name="olt_link" class="form-control">
                         ${netwatchOptionsServer}
                     </select>
-                    <small class="text-muted">Link ke OLT untuk monitoring (opsional)</small>
+                    <small class="text-muted">Link to OLT for monitoring (optional)</small>
                 </div>
                 <div class="form-group">
-                    <label>🔢 Jumlah PON Ports</label>
+                    <label>🔢 Number of PON Ports</label>
                     <input type="number" id="pon_port_count" name="pon_port_count" class="form-control" value="4" min="1" max="16" onchange="generatePonPortFields(this.value); updateODCPonPortOptions(this.value);">
-                    <small class="text-muted">Jumlah port PON di OLT (1-16)</small>
+                    <small class="text-muted">Number of PON ports on OLT (1-16)</small>
                 </div>
                 <div id="pon-ports-container"></div>
 
@@ -1825,43 +1825,43 @@ async function updateItemForm(type) {
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="add_odc_checkbox" onchange="toggleODCSection(this.checked)">
                     <label class="form-check-label" for="add_odc_checkbox">
-                        <strong>➕ Tambahkan ODC secara bersamaan</strong>
+                        <strong>➕ Add ODC at the same time</strong>
                     </label>
-                    <small class="form-text text-muted d-block">Opsional: Buat ODC child item sekaligus saat membuat Server</small>
+                    <small class="form-text text-muted d-block">Optional: Create ODC child item simultaneously when creating Server</small>
                 </div>
 
                 <div id="odc-section" style="display: none;">
                     <div class="card">
                         <div class="card-header bg-light">
-                            <strong>📦 Konfigurasi ODC</strong>
+                            <strong>📦 ODC configuration</strong>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Nama ODC <span class="text-danger">*</span></label>
-                                <input type="text" name="odc_name" class="form-control" placeholder="Contoh: ODC-1">
-                                <small class="text-muted">Nama untuk item ODC</small>
+                                <label>ODC Name <span class="text-danger">*</span></label>
+                                <input type="text" name="odc_name" class="form-control" placeholder="Example: ODC-1">
+                                <small class="text-muted">Name for the ODC item</small>
                             </div>
                             <div class="form-group">
                                 <label>PON Port dari Server <span class="text-danger">*</span></label>
                                 <select name="odc_pon_port" class="form-control" id="odc-pon-port-select">
-                                    <option value="">Pilih PON Port</option>
+                                    <option value="">Select PON Port</option>
                                 </select>
-                                <small class="text-muted">Port PON server yang terhubung ke ODC</small>
+                                <small class="text-muted">PON port of the server connected to the ODC</small>
                             </div>
                             <div class="form-group">
                                 <label>ODC Port Count</label>
                                 <input type="number" name="odc_port_count" class="form-control" value="4" min="1">
-                                <small class="text-muted">Jumlah port di ODC</small>
+                                <small class="text-muted">Number of ports on ODC</small>
                             </div>
                             <div class="alert alert-info">
-                                <small><i class="bi bi-info-circle"></i> ODC akan dibuat di lokasi yang sama dengan Server (1 titik koordinat). Power per port ODC akan otomatis dihitung dari PON Port yang dipilih.</small>
+                                <small><i class="bi bi-info-circle"></i> ODC will be created at the same location as the Server (1 coordinate point). Power per ODC port will be automatically calculated from the selected PON Port.</small>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="alert alert-info mt-2">
-                    <small><i class="bi bi-info-circle"></i> Server dapat memiliki child items: OLT dan ODC yang dapat dikonfigurasi setelah item dibuat atau bersamaan.</small>
+                    <small><i class="bi bi-info-circle"></i> The server can have child items: OLT and ODC that can be configured after the item is created or simultaneously.</small>
                 </div>
             `;
 
@@ -1895,10 +1895,10 @@ async function updateItemForm(type) {
                     <select name="parent_id" class="form-control">
                         ${serverOptions}
                     </select>
-                    <small class="text-muted">Pilih Server sebagai parent (opsional)</small>
+                    <small class="text-muted">Select a server as parent (optional)</small>
                 </div>
                 <div class="form-group">
-                    <label>📡 Jumlah PON Port</label>
+                    <label>📡 Number of PON Ports</label>
                     <select name="pon_count" class="form-control" onchange="updatePONFields(this.value)">
                         <option value="1">1 PON</option>
                         <option value="2">2 PON</option>
@@ -1906,7 +1906,7 @@ async function updateItemForm(type) {
                         <option value="8">8 PON</option>
                         <option value="16">16 PON</option>
                     </select>
-                    <small class="text-muted">Jumlah PON port pada OLT</small>
+                    <small class="text-muted">Number of PON ports on OLT</small>
                 </div>
                 <div id="pon-power-fields">
                     <div class="form-group">
@@ -1915,11 +1915,11 @@ async function updateItemForm(type) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>🔗 OLT Link (dari MikroTik Netwatch)</label>
+                    <label>🔗 OLT Link (from MikroTik Netwatch)</label>
                     <select name="olt_link" class="form-control">
                         ${netwatchOptions}
                     </select>
-                    <small class="text-muted">Link untuk monitoring status OLT</small>
+                    <small class="text-muted">Link for monitoring OLT status</small>
                 </div>
             `;
             break;
@@ -1937,7 +1937,7 @@ async function updateItemForm(type) {
             dynamicFields.innerHTML = `
                 ${!ponPortsResult || !ponPortsResult.ports || ponPortsResult.ports.length === 0 ? `
                     <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-triangle"></i> Belum ada Server PON tersedia. Buat Server terlebih dahulu.
+                        <i class="bi bi-exclamation-triangle"></i> There is no PON Server available yet. Create a Server first.
                     </div>
                 ` : ''}
                 <div class="form-group">
@@ -1945,7 +1945,7 @@ async function updateItemForm(type) {
                     <select name="olt_pon_port_id" id="olt-pon-port-select" class="form-control" required>
                         ${ponPortOptions}
                     </select>
-                    <small class="text-muted">Pilih PON port dari Server sebagai parent</small>
+                    <small class="text-muted">Select a PON port from the parent Server</small>
                 </div>
                 <div class="form-group">
                     <label>Port Count</label>
@@ -1963,7 +1963,7 @@ async function updateItemForm(type) {
                 ['20:80', '30:70', '50:50'].includes(item.config.splitter_ratio)
             );
 
-            let parentOptions = '<option value="">Pilih Parent (ODC atau ODP)</option>';
+            let parentOptions = '<option value="">Select Parent (ODC or ODP)</option>';
 
             // Add ODC group
             if (odcItems.length > 0) {
@@ -2024,7 +2024,7 @@ async function updateItemForm(type) {
             dynamicFields.innerHTML = `
                 ${noParentAvailable ? `
                     <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-triangle"></i> Belum ada ODC atau ODP dengan custom ratio tersedia. Silakan buat ODC atau ODP dengan ratio 20:80, 30:70, atau 50:50 terlebih dahulu.
+                        <i class="bi bi-exclamation-triangle"></i> There are no ODCs or ODPs with custom ratios available yet. Please create an ODC or ODP with a ratio of 20:80, 30:70, or 50:50 first.
                     </div>
                 ` : ''}
                 <div class="form-group">
@@ -2032,26 +2032,26 @@ async function updateItemForm(type) {
                     <select name="parent_id" id="odp-parent-select" class="form-control" required ${noParentAvailable ? 'disabled' : ''} onchange="handleODPParentChange(this)">
                         ${parentOptions}
                     </select>
-                    <small class="text-muted">Pilih ODC atau ODP dengan custom ratio sebagai parent</small>
+                    <small class="text-muted">Select an ODC or ODP with a custom ratio as parent</small>
                 </div>
                 <div class="form-group" id="odc-port-group" style="display: none;">
                     <label>ODC Port <span class="text-danger">*</span></label>
                     <select name="odc_port" id="odc-port-select" class="form-control">
-                        <option value="">Pilih ODC terlebih dahulu</option>
+                        <option value="">Select an ODC first</option>
                     </select>
-                    <small class="text-muted">Port ODC yang tersedia (belum terpakai)</small>
+                    <small class="text-muted">Available ODC ports (not used)</small>
                 </div>
                 <div class="form-group" id="odp-port-group" style="display: none;">
                     <label>Parent ODP Port <span class="text-danger">*</span></label>
                     <select name="parent_odp_port" class="form-control">
-                        <option value="">Pilih port parent ODP</option>
+                        <option value="">Select a parent ODP port</option>
                     </select>
-                    <small class="text-muted">Port cascading dari parent ODP (hanya port dengan % lebih besar yang tersedia)</small>
+                    <small class="text-muted">Port cascading from the parent ODP (only ports with a higher % are available)</small>
                 </div>
                 <div class="form-group">
                     <label>Port Count</label>
                     <input type="number" name="port_count" class="form-control" value="8" required min="1">
-                    <small class="text-muted">Jumlah port ODP</small>
+                    <small class="text-muted">Number of ODP ports</small>
                 </div>
                 <div class="form-group">
                     <label>Use Splitter</label>
@@ -2074,7 +2074,7 @@ async function updateItemForm(type) {
                     </select>
                 </div>
                 <div class="alert alert-info mt-2">
-                    <small><i class="bi bi-calculator"></i> PON Calculator akan otomatis menghitung power setelah input.</small>
+                    <small><i class="bi bi-calculator"></i> PON Calculator will automatically calculate power after input.</small>
                 </div>
             `;
             break;
@@ -2084,7 +2084,7 @@ async function updateItemForm(type) {
             const devicesResult = await fetchAPI('/api/map-get-available-devices.php');
             const odpResult = await fetchAPI('/api/map-get-odp-ports.php');
 
-            let deviceOptions = '<option value="">Pilih Device GenieACS</option>';
+            let deviceOptions = '<option value="">Select GenieACS Device</option>';
             if (devicesResult && devicesResult.success) {
                 devicesResult.devices.forEach(dev => {
                     const statusBadge = dev.status === 'Online' ? '🟢' : '🔴';
@@ -2104,14 +2104,14 @@ async function updateItemForm(type) {
                 <div class="form-group">
                     <label>Customer Name <span class="text-danger">*</span></label>
                     <input type="text" name="customer_name" class="form-control" required>
-                    <small class="text-muted">Nama pelanggan</small>
+                    <small class="text-muted">Customer name</small>
                 </div>
                 <div class="form-group">
                     <label>GenieACS Device <span class="text-danger">*</span></label>
                     <select name="genieacs_device_id" class="form-control" required>
                         ${deviceOptions}
                     </select>
-                    <small class="text-muted">Pilih ONU dari GenieACS (device yang sudah assigned tidak muncul)</small>
+                    <small class="text-muted">Select ONU from GenieACS (assigned devices will not appear)</small>
                 </div>
                 <div class="form-group">
                     <label>Parent ODP <span class="text-danger">*</span></label>
@@ -2122,9 +2122,9 @@ async function updateItemForm(type) {
                 <div class="form-group" id="odp-port-group">
                     <label>ODP Port <span class="text-danger">*</span></label>
                     <select name="odp_port" class="form-control" required>
-                        <option value="">Pilih ODP dulu</option>
+                        <option value="">Select ODP first</option>
                     </select>
-                    <small class="text-muted">Port yang tersedia di ODP</small>
+                    <small class="text-muted">Available ports in the ODP</small>
                 </div>
             `;
             break;
@@ -2171,13 +2171,13 @@ async function handleODPParentChange(selectElement) {
             const usedPorts = (result && result.success) ? result.used_ports : [];
 
             // Generate available ports
-            let portOptions = '<option value="">Pilih Port ODC</option>';
+            let portOptions = '<option value="">Select ODC Port</option>';
             for (let i = 1; i <= portCount; i++) {
                 const isUsed = usedPorts.includes(i);
                 if (!isUsed) {
-                    portOptions += `<option value="${i}">Port ${i} (Tersedia)</option>`;
+                    portOptions += `<option value="${i}">Port ${i} (Available)</option>`;
                 } else {
-                    portOptions += `<option value="${i}" disabled>Port ${i} (Sudah digunakan)</option>`;
+                    portOptions += `<option value="${i}" disabled>Port ${i} (In Use)</option>`;
                 }
             }
 
@@ -2190,13 +2190,13 @@ async function handleODPParentChange(selectElement) {
 
             if (availableCount === 0) {
                 warningDiv.className = 'alert alert-danger mt-2';
-                warningDiv.innerHTML = `<small><i class="bi bi-exclamation-circle"></i> <b>Semua port sudah digunakan!</b> Pilih ODC lain atau tambah ODC baru.</small>`;
+                warningDiv.innerHTML = `<small><i class="bi bi-exclamation-circle"></i> <b>All ports are in use!</b> Select another ODC or add a new ODC.</small>`;
             } else if (usedPorts.length > 0) {
                 warningDiv.className = 'alert alert-info mt-2';
-                warningDiv.innerHTML = `<small><i class="bi bi-info-circle"></i> <b>${availableCount} port tersedia</b> dari ${portCount} total port.</small>`;
+                warningDiv.innerHTML = `<small><i class="bi bi-info-circle"></i> <b>${availableCount} ports available</b> out of ${portCount} total ports.</small>`;
             } else {
                 warningDiv.className = 'alert alert-success mt-2';
-                warningDiv.innerHTML = `<small><i class="bi bi-check-circle"></i> <b>Semua ${portCount} port tersedia!</b></small>`;
+                warningDiv.innerHTML = `<small><i class="bi bi-check-circle"></i> <b>All ${portCount} ports are available!</b></small>`;
             }
 
             if (!document.getElementById('odc-port-warning')) {
@@ -2231,21 +2231,21 @@ async function handleODPParentChange(selectElement) {
         const portUsed = usedPorts.includes(availablePort);
 
         odpPortSelect.innerHTML = `
-            <option value="">Pilih port parent ODP</option>
+            <option value="">Select parent ODP port</option>
             <option value="${availablePort}" ${portUsed ? 'disabled' : ''} ${!portUsed ? 'selected' : ''}>
-                ${ratioValues[1]}% (Port tersisa untuk cascading) ${portUsed ? '❌ Sudah digunakan' : '✅ Tersedia'}
+                ${ratioValues[1]}% (Available port for cascading) ${portUsed ? '❌ In Use' : '✅ Available'}
             </option>
         `;
 
         // Show warning if port is used
         if (portUsed) {
-            showToast('Port cascading parent ODP sudah digunakan. Pilih parent lain.', 'warning');
+            showToast('The ODP cascading parent port is already in use. Choose another parent.', 'warning');
 
             // Add info alert
             const warningDiv = document.getElementById('odp-port-warning') || document.createElement('div');
             warningDiv.id = 'odp-port-warning';
             warningDiv.className = 'alert alert-danger mt-2';
-            warningDiv.innerHTML = `<small><i class="bi bi-exclamation-circle"></i> <b>Port ${availablePort} sudah digunakan!</b> Parent ODP ini sudah tidak bisa digunakan untuk cascading. Pilih ODP lain.</small>`;
+            warningDiv.innerHTML = `<small><i class="bi bi-exclamation-circle"></i> <b>Port ${availablePort} is already in use!</b> This ODP parent can no longer be used for cascading. Choose another ODP.</small>`;
 
             if (!document.getElementById('odp-port-warning')) {
                 odpPortSelect.parentElement.appendChild(warningDiv);
@@ -2255,7 +2255,7 @@ async function handleODPParentChange(selectElement) {
             const infoDiv = document.getElementById('odp-port-warning') || document.createElement('div');
             infoDiv.id = 'odp-port-warning';
             infoDiv.className = 'alert alert-success mt-2';
-            infoDiv.innerHTML = `<small><i class="bi bi-check-circle"></i> <b>Port ${availablePort} tersedia!</b> Port ${ratioValues[0]}% sudah digunakan sebagai input ODP parent ini.</small>`;
+            infoDiv.innerHTML = `<small><i class="bi bi-check-circle"></i> <b>Port ${availablePort} is available!</b> Port ${ratioValues[0]}% has been used as input for this ODP parent.</small>`;
 
             if (!document.getElementById('odp-port-warning')) {
                 odpPortSelect.parentElement.appendChild(infoDiv);
@@ -2301,7 +2301,7 @@ function updateODCPonPortOptions(portCount) {
     const select = document.getElementById('odc-pon-port-select');
     if (!select) return;
 
-    let options = '<option value="">Pilih PON Port</option>';
+    let options = '<option value="">Select PON Port</option>';
     for (let i = 1; i <= portCount; i++) {
         options += `<option value="${i}">PON Port ${i}</option>`;
     }
@@ -2317,7 +2317,7 @@ function toggleODCSection(isChecked) {
 
 async function loadODPPorts(odpId) {
     if (!odpId) {
-        document.querySelector('[name="odp_port"]').innerHTML = '<option value="">Pilih ODP dulu</option>';
+        document.querySelector('[name="odp_port"]').innerHTML = '<option value="">Select ODP first</option>';
         return;
     }
 
@@ -2327,7 +2327,7 @@ async function loadODPPorts(odpId) {
         if (odp) {
             let portOptions = '';
             if (odp.available_ports.length === 0) {
-                portOptions = '<option value="">Tidak ada port tersedia</option>';
+                portOptions = '<option value="">No available ports</option>';
             } else {
                 odp.available_ports.forEach(port => {
                     portOptions += `<option value="${port}">Port ${port}</option>`;
@@ -2353,14 +2353,14 @@ async function addItem() {
     hideLoading();
 
     if (result && result.success) {
-        showToast('Item berhasil ditambahkan', 'success');
+        showToast('Item successfully added', 'success');
         bootstrap.Modal.getInstance(document.getElementById('addItemModal')).hide();
         form.reset();
         // Remove pointer after adding item
         removeLocationPointer();
         loadMap();
     } else {
-        showToast(result.message || 'Gagal menambahkan item', 'danger');
+        showToast(result.message || 'Failed to add item', 'danger');
     }
 }
 
@@ -2467,7 +2467,7 @@ async function updateEditItemForm(item) {
                     <input type="text" name="customer_name" class="form-control" value="${item.customer_name || ''}" required>
                 </div>
                 <div class="alert alert-info">
-                    <small><i class="bi bi-info-circle"></i> GenieACS device dan ODP port tidak bisa diubah. Hapus dan buat ulang jika perlu mengubah.</small>
+                    <small><i class="bi bi-info-circle"></i> GenieACS device and ODP port cannot be changed. Delete and recreate if necessary changes.</small>
                 </div>
             `;
             break;
@@ -2491,16 +2491,16 @@ async function updateItem() {
     hideLoading();
 
     if (result && result.success) {
-        showToast('Item berhasil diupdate', 'success');
+        showToast('Item successfully updated', 'success');
         bootstrap.Modal.getInstance(document.getElementById('editItemModal')).hide();
         loadMap();
     } else {
-        showToast(result.message || 'Gagal mengupdate item', 'danger');
+        showToast(result.message || 'Failed to update item', 'danger');
     }
 }
 
 function confirmDeleteItem(itemId, itemName) {
-    if (confirm(`Apakah Anda yakin ingin menghapus "${itemName}"?\n\nPeringatan: Semua child items akan ikut terhapus!`)) {
+    if (confirm(`Are you sure you want to delete "${itemName}"?\n\nWarning: All child items will also be deleted!`)) {
         deleteItem(itemId);
     }
 }
@@ -2521,10 +2521,10 @@ async function deleteItem(itemId) {
     hideLoading();
 
     if (result && result.success) {
-        showToast('Item berhasil dihapus', 'success');
+        showToast('Item successfully deleted', 'success');
         loadMap();
     } else {
-        showToast(result.message || 'Gagal menghapus item', 'danger');
+        showToast(result.message || 'Failed to delete item', 'danger');
     }
 }
 
@@ -2596,7 +2596,7 @@ async function manageServerLinks(itemId) {
             </div>
         `;
     }
-    ponHtml += '<small class="text-muted">Output power untuk setiap PON port</small></div>';
+    ponHtml += '<small class="text-muted">Output power for each PON port</small></div>';
     ponOutputContainer.innerHTML = ponHtml;
 
     const modal = new bootstrap.Modal(document.getElementById('serverLinksModal'));
@@ -2767,7 +2767,7 @@ document.addEventListener('click', function(e) {
 // Enable polyline editing mode
 function enablePolylineEdit() {
     if (!window.currentEditingPolyline) {
-        showToast('Tidak ada polyline yang dipilih', 'warning');
+        showToast('No polylines are selected', 'warning');
         closeContextMenu();
         return;
     }
@@ -2776,14 +2776,14 @@ function enablePolylineEdit() {
     const connectionData = polyline.connectionData;
 
     if (!connectionData) {
-        showToast('Data koneksi tidak ditemukan', 'error');
+        showToast('Connection data not found', 'error');
         closeContextMenu();
         return;
     }
 
     // Check if Leaflet.Editable is available
     if (!map || !map.editTools) {
-        showToast('Edit mode belum siap. Silakan refresh halaman.', 'error');
+        showToast('Edit mode is not ready. Please refresh the page.', 'error');
         closeContextMenu();
         return;
     }
@@ -2801,7 +2801,7 @@ function enablePolylineEdit() {
         // Resume auto-refresh when exiting edit mode
         resumeAutoRefresh();
 
-        showToast('Edit mode dinonaktifkan.', 'info');
+        showToast('Edit mode disabled.', 'info');
     } else {
         // Enable editing using Leaflet.Editable
         try {
@@ -2811,7 +2811,7 @@ function enablePolylineEdit() {
             // Verify map.editTools exists
             if (!map.editTools) {
                 console.error('Leaflet.Editable not initialized');
-                showToast('Edit mode belum siap. Silakan refresh halaman dan coba lagi.', 'error');
+                showToast('Edit mode is not ready. Please refresh the page and try again.', 'error');
                 closeContextMenu();
                 return;
             }
@@ -2819,7 +2819,7 @@ function enablePolylineEdit() {
             // Verify polyline has enableEdit method
             if (typeof polyline.enableEdit !== 'function') {
                 console.error('Polyline does not have enableEdit method', polyline);
-                showToast('Polyline tidak mendukung edit mode.', 'error');
+                showToast('Polyline does not support edit mode.', 'error');
                 closeContextMenu();
                 return;
             }
@@ -2946,7 +2946,7 @@ function enablePolylineEdit() {
                 window.markerObserver.observe(mapPane, { childList: true, subtree: true });
             }
 
-            showToast('Edit mode aktif! Drag titik-titik untuk mengubah jalur. Klik garis untuk menambah titik waypoint. Auto-refresh dinonaktifkan sementara.', 'success');
+            showToast('Edit mode is active! Drag the points to change the route. Click the line to add a waypoint. Auto-refresh is temporarily disabled.', 'success');
 
             // Add event listeners to sync shadow and border polylines when main polyline is edited
             const syncPolylineLayers = function() {
@@ -2980,7 +2980,7 @@ function enablePolylineEdit() {
             // Sync on vertex deleted
             polyline.on('editable:vertex:deleted', syncPolylineLayers);
         } catch (error) {
-            showToast('Gagal mengaktifkan edit mode', 'error');
+            showToast('Failed to activate edit mode', 'error');
         }
     }
 
@@ -2990,7 +2990,7 @@ function enablePolylineEdit() {
 // Save polyline waypoints to database
 async function savePolylineWaypoints() {
     if (!window.currentEditingPolyline) {
-        showToast('Tidak ada polyline yang dipilih', 'warning');
+        showToast('No polyline is selected', 'warning');
         closeContextMenu();
         return;
     }
@@ -2999,7 +2999,7 @@ async function savePolylineWaypoints() {
     const connectionData = polyline.connectionData;
 
     if (!connectionData) {
-        showToast('Data koneksi tidak ditemukan', 'danger');
+        showToast('Connection data not found', 'danger');
         closeContextMenu();
         return;
     }
@@ -3030,7 +3030,7 @@ async function savePolylineWaypoints() {
     hideLoading();
 
     if (result && result.success) {
-        showToast(`Waypoints berhasil disimpan (${waypoints.length} titik)`, 'success');
+        showToast(`Waypoints successfully saved (${waypoints.length} points)`, 'success');
 
         // Update global waypoints storage
         waypoints[connectionData.connectionKey] = waypoints;
@@ -3058,7 +3058,7 @@ async function savePolylineWaypoints() {
         // Resume auto-refresh after saving
         resumeAutoRefresh();
     } else {
-        showToast(result.message || 'Gagal menyimpan waypoints', 'danger');
+        showToast(result.message || 'Failed to save waypoints', 'danger');
     }
 
     closeContextMenu();
@@ -3067,12 +3067,12 @@ async function savePolylineWaypoints() {
 // Reset polyline to straight line (remove all waypoints)
 async function resetPolylineToStraight() {
     if (!window.currentEditingPolyline) {
-        showToast('Tidak ada polyline yang dipilih', 'warning');
+        showToast('No polyline is selected', 'warning');
         closeContextMenu();
         return;
     }
 
-    if (!confirm('Apakah Anda yakin ingin menghapus semua waypoints dan kembali ke garis lurus?')) {
+    if (!confirm('Are you sure you want to remove all waypoints and return to a straight line?')) {
         closeContextMenu();
         return;
     }
@@ -3081,7 +3081,7 @@ async function resetPolylineToStraight() {
     const connectionData = polyline.connectionData;
 
     if (!connectionData) {
-        showToast('Data koneksi tidak ditemukan', 'danger');
+        showToast('Connection data not found', 'danger');
         closeContextMenu();
         return;
     }
@@ -3100,7 +3100,7 @@ async function resetPolylineToStraight() {
     hideLoading();
 
     if (result && result.success) {
-        showToast('Waypoints berhasil dihapus, garis dikembalikan ke bentuk lurus', 'success');
+        showToast('Waypoints successfully removed, polyline reverted to straight line', 'success');
 
         // Clear waypoints from global storage
         delete waypoints[connectionData.connectionKey];
@@ -3127,7 +3127,7 @@ async function resetPolylineToStraight() {
         // Resume auto-refresh after reset
         resumeAutoRefresh();
     } else {
-        showToast(result.message || 'Gagal menghapus waypoints', 'danger');
+        showToast(result.message || 'Failed to remove waypoints', 'danger');
     }
 
     closeContextMenu();

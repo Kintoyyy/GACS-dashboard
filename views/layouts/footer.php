@@ -3,6 +3,8 @@
         <!-- Footer -->
         <div class="footer">
             Made by <a href="https://github.com/safrinnetwork/" target="_blank">Mostech</a>
+                    <br>
+        Modified by <a href="https://github.com/Kintoyyy/" target="_blank">Kintoyyy</a>
         </div>
     </div>
 
