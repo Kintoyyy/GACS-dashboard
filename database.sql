@@ -145,6 +145,7 @@ CREATE TABLE IF NOT EXISTS `map_items` (
   `properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`properties`)),
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`config`)),
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`),
   KEY `idx_genieacs_device_id` (`genieacs_device_id`),
