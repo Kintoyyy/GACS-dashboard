@@ -7,11 +7,11 @@
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
 ![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-orange)
 
-**GenieACS Network Monitoring Dashboard dengan Visualisasi Topologi PON**
+**GenieACS Network Monitoring Dashboard with PON Topology Visualization**
 
-Dashboard berbasis web yang powerful untuk memonitor dan memvisualisasikan topologi jaringan GenieACS dengan real-time monitoring, editable polylines, dan integrasi Telegram.
+A powerful web-based dashboard for monitoring and visualizing GenieACS network topology with real-time monitoring, editable polylines, and Telegram integration.
 
-[Fitur](#-fitur) • [Instalasi](#-quick-installation) • [Dokumentasi](#-documentation) • [Screenshots](#-screenshots)
+[Features](#-features) • [Installation](#-quick-installation) • [Documentation](#-documentation) • [Screenshots](#-screenshots)
 
 </div>
 
@@ -20,7 +20,7 @@ Dashboard berbasis web yang powerful untuk memonitor dan memvisualisasikan topol
 ## 📋 Table of Contents
 
 - [About](#-about)
-- [Features](#-fitur)
+- [Features](#-features)
 - [Requirements](#-requirements)
 - [Quick Installation](#-quick-installation)
 - [Configuration](#-configuration)
@@ -36,48 +36,48 @@ Dashboard berbasis web yang powerful untuk memonitor dan memvisualisasikan topol
 
 ## 🎯 About
 
-**GACS Dashboard** adalah platform monitoring jaringan fiber optik PON yang terintegrasi dengan GenieACS. Menyediakan visualisasi topologi interaktif, monitoring real-time, dan notifikasi Telegram untuk manajemen infrastruktur jaringan.
+GACS Dashboard is a PON fiber optic network monitoring platform integrated with GenieACS. It provides interactive topology visualization, real-time monitoring, and Telegram notifications for network infrastructure management.
 
-**Key Highlights:**
+Key Highlights:
 
-- 🗺️ Interactive network topology map dengan editable connection lines
-- 📊 Real-time device monitoring (ONU/ONT)
-- 🤖 Telegram bot dengan role-based access control
-- ⚡ PON power calculator untuk optical budget
-- 📱 Responsive design untuk mobile & desktop
+- Interactive network topology map with editable connection lines
+- Real-time device monitoring (ONU/ONT)
+- Telegram bot with role-based access control
+- PON power calculator for optical budgeting
+- Responsive design for mobile & desktop
 
-> **Note:** Project ini dalam tahap **beta testing**. Silakan laporkan bug yang ditemukan.
+Note: This project is in beta testing. Please report any bugs.
 
 ---
 
-## ✨ Fitur
+## ✨ Features
 
 ### Core Features
 
-- ✅ **Real-time Device Monitoring** - Status ONU/ONT secara real-time
-- ✅ **Interactive Network Topology Map** - Visualisasi PON hierarchy dengan drag & drop
-- ✅ **Editable Connection Lines** - Customize jalur koneksi dengan waypoints
-- ✅ **PON Power Calculator** - Hitung optical power budget otomatis
-- ✅ **GenieACS Integration** - Integrasi penuh dengan GenieACS TR-069 API
-- ✅ **MikroTik API Support** - Monitor status dari MikroTik router
-- ✅ **Telegram Bot** - Multi-user bot dengan 11 granular permissions
+- ✅ **Real-time Device Monitoring** - Real-time ONU/ONT status
+- ✅ **Interactive Network Topology Map** - Drag-and-drop PON hierarchy visualization
+- ✅ **Editable Connection Lines** - Customize connection paths with waypoints
+- ✅ **PON Power Calculator** - Automatic optical power budget calculation
+- ✅ **GenieACS Integration** - Full integration with the GenieACS TR-069 API
+- ✅ **MikroTik API Support** - Monitor the status of your MikroTik router
+- ✅ **Telegram Bot** - Multi-user bot with 11 granular permissions
 
 ### PON Topology Support
 
 - **Server** → **ISP** → **MikroTik** → **OLT** → **ODC** → **ODP** → **ONU/ONT**
-- Support splitter 1:2 hingga 1:64 + custom ratio (20:80, 30:70, 50:50)
-- GPS coordinates untuk setiap device
-- Auto power calculation melalui hierarchy
+- Support splitter 1:2 to 1:64 + custom ratio (20:80, 30:70, 50:50)
+- GPS coordinates for each device
+- Auto power calculation via hierarchy
 
 ### Telegram Bot Features
 
-- 🤖 **Interactive Menu** - Inline keyboard untuk semua fungsi
-- 🔐 **Role-Based Access** - 3 roles (Admin, Operator, Viewer) dengan 11 permissions
+- 🤖 **Interactive Menu** - Inline keyboard for all functions
+- 🔐 **Role-Based Access** - 3 roles (Admin, Operator, Viewer) with 11 permissions
 - 📊 **Device Management** - View, search, filter, summon devices
 - 📶 **WiFi Configuration** - Edit SSID/Password via multi-step wizard
-- 🗺️ **GPS Location** - Share device location dengan Google Maps link
-- 📈 **Reports** - Daily/weekly automated reports dengan scheduling
-- 🔔 **Notifications** - Subscribe per-device untuk status alerts
+- 🗺️ **GPS Location** - Share device location with Google Maps link
+- 📈 **Reports** - Daily/weekly automated reports with scheduling
+- 🔔 **Notifications** - Subscribe per-device for status alerts
 
 ---
 
@@ -85,7 +85,7 @@ Dashboard berbasis web yang powerful untuk memonitor dan memvisualisasikan topol
 
 **Server:**
 
-- Web server: Apache 2.4+ (dengan mod_rewrite) atau Nginx 1.18+
+- Web server: Apache 2.4+ (with mod_rewrite) or Nginx 1.18+
 - PHP: 7.4+ (8.0+ recommended)
 - MySQL/MariaDB: 5.7+ / 10.3+
 - Composer
@@ -98,9 +98,9 @@ php-mysqli, php-json, php-curl, php-mbstring, php-xml
 
 **External Services:**
 
-- GenieACS instance (untuk device management)
-- MikroTik Router (optional, untuk network status)
-- Telegram Bot (optional, untuk notifications)
+- GenieACS instance (for device management)
+- MikroTik Router (optional, for network status)
+- Telegram Bot (optional, for notifications)
 
 ---
 
@@ -109,9 +109,28 @@ php-mysqli, php-json, php-curl, php-mbstring, php-xml
 ### Step 1: Upload & Extract
 
 ```bash
-# Upload file ZIP ke hosting
-unzip gacs-dashboard.zip -d /var/www/html/gacs
-cd /var/www/html/gacs
+# Update packages
+sudo apt update && sudo apt upgrade -y
+
+# Install Apache
+sudo apt install apache2 -y
+
+# Install PHP and extensions
+sudo apt install php php-mysqli php-json php-curl php-mbstring php-xml -y
+
+# Install MySQL
+sudo apt install mysql-server -y
+
+# Install Composer
+sudo apt install composer -y
+
+sudo systemctl restart apache2
+
+git clone https://github.com/safrinnetwork/GACS-dashboard
+
+sudo cp -r GACS-dashboard/. /var/www/html/
+
+cd /var/www/html
 ```
 
 ### Step 2: Install Dependencies
@@ -127,7 +146,7 @@ composer install --no-dev --optimize-autoloader
 mysql -u root -p -e "CREATE DATABASE gacs_production CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;"
 mysql -u root -p gacs_production < database.sql
 
-# Atau via phpMyAdmin:
+# Or via phpMyAdmin:
 # 1. Create database: gacs_production
 # 2. Import: database.sql
 ```
@@ -139,51 +158,41 @@ mysql -u root -p gacs_production < database.sql
 cp config/database.php.example config/database.php
 cp config/config.php.example config/config.php
 
-# Edit database credentials
+# Edit credentials database
 nano config/database.php
 ```
 
-Update dengan credentials Anda:
+Update your credentials:
 
 ```php
 define('DB_HOST', 'localhost');
-define('DB_USER', 'your_username');
+define('DB_USER', 'root');
 define('DB_PASS', 'your_password');
 define('DB_NAME', 'gacs_production');
 ```
 
-Edit app URL:
-
-```bash
-nano config/config.php
-```
-
-```php
-define('APP_URL', 'https://your-domain.com');
-```
 
 ### Step 5: Set Permissions
 
 ```bash
 # Set ownership (adjust user for your hosting)
-chown -R www-data:www-data /var/www/html/gacs
+chown -R www-data:www-data /var/www/html
 
 # Set permissions
-find /var/www/html/gacs -type d -exec chmod 755 {} \;
-find /var/www/html/gacs -type f -exec chmod 644 {} \;
+find /var/www/html -type d -exec chmod 755 {} \;
+find /var/www/html -type f -exec chmod 644 {} \;
 
 # Secure sensitive files
-chmod 600 /var/www/html/gacs/config/database.php
-chmod 600 /var/www/html/gacs/config/config.php
+chmod 600 /var/www/html/config/database.php
+chmod 600 /var/www/html/config/config.php
 ```
 
 ### Step 6: Test Installation
-
-1. Buka browser: `https://your-domain.com`
-2. Login dengan kredensial default:
-   - Username: `user1234`
-   - Password: `mostech`
-3. ⚠️ **SEGERA GANTI PASSWORD DEFAULT!**
+1. Open the browser: `https://your-domain.com`
+2. Login with default credentials: 
+- Username: `user1234` 
+- Password: `mostech`
+3. ⚠️ **CHANGE YOUR DEFAULT PASSWORD IMMEDIATELY!**
 
 ---
 
@@ -204,9 +213,9 @@ chmod 600 /var/www/html/gacs/config/config.php
 ### 3. Telegram Bot
 
 1. Configuration → **Telegram** tab
-2. Enter: Bot Token (dari @BotFather), Chat ID
+2. Enter: Bot Token (from @BotFather), Chat ID
 3. Test & Save
-4. Set webhook:
+4. Set webhooks:
 
 ```bash
 curl "https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://your-domain.com/webhook/telegram.php"
@@ -226,35 +235,35 @@ VALUES ('YOUR_CHAT_ID', 'username', 'Your Name', 'admin', 1);
 ### Main Menu Commands
 
 ```
-/start, /menu     - Show main menu
-/help             - Command list
-/stats            - Dashboard statistics
-/list             - Browse all devices (10 per page)
-/status <id>      - Device details
+/start, /menu - Show main menu
+/help - Command list
+/stats - Dashboard statistics
+/list - Browse all devices (10 per page)
+/status <id> - Device details
 /search <keyword> - Search devices
-/summon <id>      - Force device connection request
-/subscriptions    - View your subscriptions
+/summon <id> - Force device connection request
+/subscriptions - View your subscriptions
 ```
 
 ### Admin Commands
 
 ```
-/whoami                   - View your role & permissions
-/users                    - List all users
-/user <chat_id>           - View user details
+/whoami - View your roles & permissions
+/users - List all users
+/user <chat_id> - View user details
 /setrole <chat_id> <role> - Change user role (admin/operator/viewer)
-/activate <chat_id>       - Activate user
-/deactivate <chat_id>     - Deactivate user
+/activate <chat_id> - Activate user
+/deactivate <chat_id> - Deactivate user
 ```
 
-### Report Commands
+### Reports Commands
 
 ```
-/report daily             - Generate daily report now
-/report weekly            - Generate weekly report now
-/schedule daily HH:MM     - Schedule daily reports
+/report daily - Generate daily report now
+/report weekly - Generate weekly report now
+/schedule daily HH:MM - Schedule daily reports
 /schedule weekly <day> HH:MM - Schedule weekly reports
-/schedule list            - View active schedules
+/schedule list - View active schedules
 ```
 
 ### Role-Based Access
@@ -267,15 +276,15 @@ VALUES ('YOUR_CHAT_ID', 'username', 'Your Name', 'admin', 1);
 
 ### Interactive Features
 
-- 📊 **Device List** - Pagination (10/page) dengan Previous/Next buttons
+- 📊 **Device List** - Pagination (10/page) with Previous/Next buttons
 - 📶 **WiFi Edit** - Multi-step wizard (SSID → Password → Confirm)
 - 🗺️ **GPS Location** - View coordinates, Google Maps, Network Map links
 - 📍 **Location Sharing** - Send actual Telegram GPS pin
-- 🔔 **Notifications** - Subscribe per-device untuk status changes
+- 🔔 **Notifications** - Subscribe per-device for status changes
 
 ---
 
-## 📅 Automated Tasks (Cron Jobs)
+## 📅 ​​Automated Tasks (Cron Jobs)
 
 ### Required Cron Jobs
 
@@ -285,29 +294,29 @@ crontab -e
 
 # Add these lines (adjust paths):
 # Device monitoring - every 5 minutes
-*/5 * * * * /usr/bin/php /path/to/gacs/cron/device-monitor.php >> /var/log/gacs-monitor.log 2>&1
+*/5 * * * * /usr/bin/php /path/to/cron/device-monitor.php >> /var/log/gacs-monitor.log 2>&1
 
 # Webhook monitoring - every 5 minutes
-*/5 * * * * /usr/bin/php /path/to/gacs/cron/webhook-monitor.php 2>&1 | logger -t webhook-monitor
+*/5 * * * * /usr/bin/php /path/to/cron/webhook-monitor.php 2>&1 | logger -t webhook-monitor
 
 # Database backup - daily at 2 AM
-0 2 * * * /path/to/gacs/cron/backup.sh >> /var/log/gacs-backup.log 2>&1
+0 2 * * * /path/to/cron/backup.sh >> /var/log/gacs-backup.log 2>&1
 
 # Scheduled reports - every hour (check for pending reports)
-0 * * * * /usr/bin/php /path/to/gacs/cron/send-scheduled-reports.php >> /var/log/gacs-reports.log 2>&1
+0 * * * * /usr/bin/php /path/to/cron/send-scheduled-reports.php >> /var/log/gacs-reports.log 2>&1
 ```
 
 ### Test Cron Jobs Manually
 
 ```bash
 # Test device monitor
-php /path/to/gacs/cron/device-monitor.php
+php /path/to/cron/device-monitor.php
 
 # Test webhook monitor
-php /path/to/gacs/cron/webhook-monitor.php
+php /path/to/cron/webhook-monitor.php
 
-# Test backup
-bash /path/to/gacs/cron/backup.sh
+# Test backups
+bash /path/to/cron/backup.sh
 ```
 
 ---
@@ -324,7 +333,7 @@ tar -czf backup_files_$(date +%Y%m%d).tar.gz /var/www/html/
 # 2. Set secure permissions
 chmod 600 config/database.php config/config.php
 find . -type d -exec chmod 755 {} \;
-find . -type f -exec chmod 644 {} \;
+find . -type f -exec chmod 644 {}\;
 
 # 3. Disable PHP error display
 # Edit php.ini:
@@ -345,8 +354,8 @@ log_errors = On
 
 ```bash
 # Install Certbot
-sudo apt install certbot python3-certbot-apache  # For Apache
-sudo apt install certbot python3-certbot-nginx   # For Nginx
+sudo apt install certbot python3-certbot-apache # For Apache
+sudo apt install certbot python3-certbot-nginx # For Nginx
 
 # Obtain certificate
 sudo certbot --apache -d your-domain.com
@@ -360,22 +369,23 @@ sudo certbot renew --dry-run
 ### Apache Virtual Host Example
 
 ```apache
-<VirtualHost *:443>
-    ServerName your-domain.com
-    DocumentRoot /var/www/html/gacs
+<VirtualHost *:443> 
+ServerName your-domain.com 
+DocumentRoot /var/www/html
 
-    SSLEngine on
-    SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
-    SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
+SSLEngine on 
+SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem 
+SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem 
 
-    <Directory /var/www/html/gacs>
-        Options -Indexes +FollowSymLinks
-        AllowOverride All
-        Require all granted
-    </Directory>
+<Directory /var/www/html> 
+Options -Indexes
++FollowSymLinks 
+AllowOverride All 
+Require all granted 
+</Directory> 
 
-    ErrorLog ${APACHE_LOG_DIR}/gacs-error.log
-    CustomLog ${APACHE_LOG_DIR}/gacs-access.log combined
+ErrorLog ${APACHE_LOG_DIR}/gacs-error.log 
+CustomLog ${APACHE_LOG_DIR}/gacs-access.log combined
 </VirtualHost>
 ```
 
@@ -387,7 +397,7 @@ sudo certbot renew --dry-run
 
 ![Login](./preview/login.png)
 
-### Dashboard
+### Dashboards
 
 ![Dashboard](./preview/dashboard.png)
 
@@ -395,13 +405,13 @@ sudo certbot renew --dry-run
 
 ![Devices](./preview/device.png)
 
-### Device Detail - Part 1
+### Device Details - Part 1
 
 ![Device Detail 1](./preview/device_detail_1.png)
 
-### Device Detail - Part 2
+### Device Details - Part 2
 
-![Device Detail 2](./preview/device_detail_2.png)
+![Device Details 2](./preview/device_detail_2.png)
 
 ### Network Topology Map
 
@@ -460,8 +470,8 @@ grep CRON /var/log/syslog
 # Verify crontab
 crontab -l
 
-# Test script manually
-php /path/to/gacs/cron/device-monitor.php
+# Test scripts manually
+php /path/to/cron/device-monitor.php
 ```
 
 ### WiFi Edit Not Working
@@ -489,9 +499,9 @@ php /path/to/gacs/cron/device-monitor.php
 - Database setup & import
 - Configuration files
 - Permission setup
-- Testing installation
+- Test installation
 
-#### Deployment
+#### Deployments
 
 - Pre-deployment checklist
 - Web server configuration (Apache/Nginx)
@@ -527,40 +537,40 @@ php /path/to/gacs/cron/device-monitor.php
 
 ---
 
-## 📦 File Structure
+## 📦 Files Structure
 
 ```
 gacs-dashboard/
-├── api/                    # API endpoints
-│   ├── map-*.php          # Map operations
-│   ├── get-devices.php    # Device data
-│   └── update-wifi-config.php
+├── api/ # API endpoints
+│ ├── map-*.php # Map operations
+│ ├── get-devices.php # Device data
+│ └── update-wifi-config.php
 ├── assets/
-│   ├── css/               # Stylesheets
-│   └── js/                # JavaScript (Leaflet.Editable.js)
-├── config/                # Configuration
-│   ├── config.php         # App config
-│   └── database.php       # DB credentials
-├── cron/                  # Cron jobs
-│   ├── device-monitor.php
-│   ├── webhook-monitor.php
-│   └── backup.sh
-├── lib/                   # Core libraries
-│   ├── GenieACS.php
-│   ├── MikroTikAPI.php
-│   ├── PONCalculator.php
-│   ├── TelegramBot.php
-│   └── PermissionManager.php
-├── webhook/
-│   └── telegram.php       # Telegram webhook
-├── views/                 # View templates
-├── dashboard.php          # Main dashboard
-├── devices.php            # Devices page
-├── device-detail.php      # Device details
-├── map.php                # Network map
-├── configuration.php      # Settings
-├── database.sql           # Unified schema (25 tables)
-└── README.md              # This file
+│ ├── css/ # Stylesheets
+│ └── js/ # JavaScript (Leaflet.Editable.js)
+├── config/ # Configuration
+│ ├── config.php # App config
+│ └── database.php # DB credentials
+├── cron/ # Cron jobs
+│ ├── device-monitor.php
+│ ├── webhook-monitor.php
+│ └── backup.sh
+├── lib/ # Core libraries
+│ ├── GenieACS.php
+│ ├── MikroTikAPI.php
+│ ├── PONCalculator.php
+│ ├── TelegramBot.php
+│ └── PermissionManager.php
+├── webhooks/
+│ └── telegram.php # Telegram webhook
+├── views/ # View templates
+├── dashboard.php # Main dashboards
+├── devices.php # Devices page
+├── device-detail.php # Device details
+├── map.php # Network map
+├── configuration.php # Settings
+├── database.sql # Unified schema (25 tables)
+└── README.md # This file
 ```
 
 ---
@@ -571,11 +581,11 @@ gacs-dashboard/
 
 - ✅ Initial beta release
 - ✅ Core dashboard functionality
-- ✅ Interactive network topology map dengan editable polylines
+- ✅ Interactive network topology map with editable polylines
 - ✅ GenieACS, MikroTik, Telegram integrations
 - ✅ PON power calculator
-- ✅ Multi-user Telegram bot dengan RBAC (11 permissions)
-- ✅ WiFi edit via Telegram dengan multi-step wizard
+- ✅ Multi-user Telegram bot with RBAC (11 permissions)
+- ✅ WiFi editing via Telegram with a multi-step wizard
 - ✅ GPS location sharing & map integration
 - ✅ Scheduled reports (daily/weekly)
 - ✅ Device monitoring & notifications
@@ -590,10 +600,10 @@ gacs-dashboard/
 
 Contributions are welcome! If you'd like to contribute:
 
-1. Fork repository
+1. Fork the repository
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
+4. Push to branch (`git push orwant feature/AmazingFeature`)
 5. Open Pull Request
 
 **Guidelines:**
@@ -609,10 +619,10 @@ Contributions are welcome! If you'd like to contribute:
 
 If you encounter issues or have questions:
 
-- 📝 **Issues:** Open issue di GitHub repository
+- 📝 **Issues:** Open issue in GitHub repository
 - 📖 **Documentation:** See complete documentation files above
 - 🔍 **Troubleshooting:** Check troubleshooting section
-- 💬 **Community:** Join discussion di GitHub Discussions
+- 💬 **Community:** Join the discussion at GitHub Discussions
 
 ---
 
@@ -635,7 +645,7 @@ This project is licensed under the **MIT License** - see LICENSE file for detail
 
 <div align="center">
 
-**Dibuat dengan ❤️ untuk Network Administrators**
+**Created with ❤️ for Network Administrators**
 
 [⬆ Back to Top](#gacs-dashboard-v100-beta)
 
