@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="bi bi-person"></i> Username
                     </label>
                     <input type="text" name="username" id="username" class="form-control"
-                           placeholder="Masukkan username" required autofocus>
+                           placeholder="Enter username" required autofocus>
                 </div>
 
                 <div class="form-group">
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="bi bi-lock"></i> Password
                     </label>
                     <input type="password" name="password" id="password" class="form-control"
-                           placeholder="Masukkan password" required>
+                           placeholder="Enter password" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary w-100">
