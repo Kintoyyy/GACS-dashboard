@@ -126,7 +126,7 @@ sudo apt install composer -y
 
 sudo systemctl restart apache2
 
-git clone https://github.com/safrinnetwork/GACS-dashboard
+git clone https://github.com/kintoyyy/GACS-dashboard
 
 sudo cp -r GACS-dashboard/. /var/www/html/
 
